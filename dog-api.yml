@@ -19,6 +19,8 @@ tags:
     description: Products-related operations
   - name: Orders
     description: Orders-related operations
+  - name: AllBreeds
+    description: List all breeds
 security:
   - BasicAuth: []
   - BearerAuth: []
@@ -55,6 +57,51 @@ paths:
                 required:
                   - message
                   - status
+  /breeds/image/random:
+    get:
+      summary: Get random image
+      description: Returns a single random image from all dogs collection
+      operationId: imageRandom
+      responses:
+        '200':
+          description: A random dog image
+          content:
+              application/json:
+                schema:
+                  type: string
+                  properties:
+                    message:
+                        type: string
+                        example: "https://images.dog.ceo/breeds/terrier-yorkshire/img_2384.jpg"
+                        description: The randome image url.
+                    status:
+                      type: string
+                      example: success
+                      desription: The status of the response.
+                  required:
+                    - message
+                    - status
+  /breed/{breedId}/images:
+    get:
+      summary: Get random image
+      description: Returns an array of all the images from a breed, e.g. hound
+      operationId: imageRandom
+      responses:
+        '200':
+          description: An array of dog images from a certain breed.
+          content:
+              application/json:
+                schema:
+                  type: string
+                  properties:
+                    message:
+                        type: array
+                        items: 
+                          type: string
+                        example: "https://images.dog.ceo/breeds/terrier-yorkshire/img_2384.jpg"
+                        description: Array of images from a dog breed.
+                  required:
+                    - message
   /categories:
     get:
       tags:
