@@ -19,8 +19,14 @@ tags:
     description: Products-related operations
   - name: Orders
     description: Orders-related operations
-  - name: AllBreeds
+  - name: List All Breeds
     description: List all breeds
+  - name: Random 
+    description: Returns a random image
+  - name: By Breed
+    description: Searches you can do based on breed.
+  - name: By Sub-Breed
+    description: Searches you can do using sub-breed.
 security:
   - BasicAuth: []
   - BearerAuth: []
@@ -32,6 +38,8 @@ security:
 paths:
   /breeds/list/all:
     get:
+      tags:
+        - List All Breeds
       summary: List all dog breeds
       description: Returns the list of dog breeds available in Dog api
       operationId: getBreeds
@@ -59,6 +67,8 @@ paths:
                   - status
   /breeds/image/random:
     get:
+      tags:
+        - Random
       summary: Get random image
       description: Returns a single random image from all dogs collection
       operationId: imageRandom
@@ -73,7 +83,7 @@ paths:
                     message:
                         type: string
                         example: "https://images.dog.ceo/breeds/terrier-yorkshire/img_2384.jpg"
-                        description: The randome image url.
+                        description: The random image url.
                     status:
                       type: string
                       example: success
@@ -83,6 +93,8 @@ paths:
                     - status
   /breed/{breedId}/images:
     get:
+      tags:
+        - By Breed
       summary: Get random image
       description: Returns an array of all the images from a breed, e.g. hound
       operationId: imageRandom
@@ -103,6 +115,59 @@ paths:
                         description: Array of images from a dog breed.
                   required:
                     - message
+  /breed/{breedID}/images/random:
+    get:
+      tags:
+        - By Breed
+      summary: Get random image of a breed.
+      description: Returns a random dog image from a breed, e.g. hound.
+      operationId: imageRandom
+      responses:
+        '200':
+          description: A random dog image from a breed.
+          content:
+              application/json:
+                schema:
+                  type: string
+                  properties:
+                    message:
+                        type: string
+                        example: "https://images.dog.ceo/breeds/hound-ibizan/n02091244_4885.jpg"
+                        description: The random image url.
+                    status:
+                      type: string
+                      example: success
+                      desription: The status of the response.
+                  required:
+                    - message
+                    - status
+  /breed/hound/images/random/{number}:
+    get:
+      tags:
+        - By Breed
+      summary: Get random image of a breed.
+      description: Return multiple random dog images from a breed, e.g. hound.
+      operationId: imageRandom
+      responses:
+        '200':
+          description: Return multiple random dog images from a breed, e.g. hound.
+          content:
+              application/json:
+                schema:
+                  type: string
+                  properties:
+                    message:
+                        type: string
+                        example: "https://dog.ceo/api/breed/hound/images/random/3"
+                        description: The random image url.
+                    status:
+                      type: string
+                      example: success
+                      desription: The status of the response.
+                  required:
+                    - message
+                    - status
+  /breed/hound/list:
   /categories:
     get:
       tags:
