@@ -20,6 +20,13 @@ tags:
     description: Searches you can do based on breed.
   - name: By Sub-Breed
     description: Searches you can do using sub-breed.
+host: https://dog.ceo
+basePath: /api
+schemes:
+  - https
+server:
+  url: https://dog.ceo/api
+  description: Production server
 paths:
   /breeds/list/all:
     get:
