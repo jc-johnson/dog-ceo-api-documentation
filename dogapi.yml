@@ -90,7 +90,7 @@ paths:
         - name: breedId
           in: path
           required: true
-          description: The ID or name of the dog breed (e.g. `hound-afghan`).
+          description: The ID or name of the dog breed (e.g. `hound`).
           schema:
             type: string
       responses:
@@ -129,7 +129,7 @@ paths:
         - name: breedId
           in: path
           required: true
-          description: The ID or name of the dog breed (e.g. `mastiff-bull`, `hound-afghan`).
+          description: The ID or name of the dog breed (e.g. `boxer`, `bulldog`).
           schema:
             type: string
       responses:
